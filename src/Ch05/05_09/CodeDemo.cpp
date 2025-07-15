@@ -16,6 +16,19 @@ double CalculateTotalCost(std::vector<Resource> resources){
     double result = 0.0;
     
     // Write your code here
+    for (auto resource : resources) {
+        switch(resource.type) {
+            case 'B':
+                result += resource.baseCost * 1.05;
+                break;
+            case 'L':
+                result += resource.baseCost * 1.15;
+                break;
+            case 'E':
+            default:
+                result += resource.baseCost;
+        }
+    }
     
     return result;
 }
