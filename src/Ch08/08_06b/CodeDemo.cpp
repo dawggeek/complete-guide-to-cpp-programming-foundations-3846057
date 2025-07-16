@@ -4,9 +4,11 @@
 
 #include <iostream>
 #include <queue>
+#include <stack>
 
 int main(){
     std::queue<std::string> eventQueue;  // FIFO container for game events
+    std::stack<std::string> undoStack; // LIFO contain for game events
 
     // Adding events to the queue
     eventQueue.push("Move Forward");
@@ -18,6 +20,12 @@ int main(){
         std::string currentEvent = eventQueue.front();
         std::cout << "Performing event: " << currentEvent << std::endl;
         eventQueue.pop(); 
+        undoStack.push(currentEvent);
+    }
+
+    while (!undoStack.empty()) {
+        std::cout << "Undo Action: " << undoStack.top() << std::endl;
+        undoStack.pop();
     }
 
     std::cout << std::endl << std::endl;
